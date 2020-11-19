@@ -1,0 +1,58 @@
+﻿<Window x:Class="JesterCap.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JesterCap"
+        mc:Ignorable="d"
+        Title="JesterCap" Height="218.033" Width="534.426" Icon="Resources/true_crown_icon.png" Visibility="Visible">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Border x:Name="PanelAttach" Grid.Column="0" Grid.Row="0" Background="#88000000">
+            <Grid>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Top" Padding="5,3,5,3" Margin="0,10,0,10" Foreground="White">Attach to Process</Label>
+                <Image x:Name="IconAttach" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Resources/spelunky_2_shadow.png" Width="64"></Image>
+                <Button x:Name="ButtonAttach" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="5,3,5,3" Margin="0,10,0,10" Click="ButtonAttach_Click">Attach</Button>
+            </Grid>
+        </Border>
+
+        <TextBlock VerticalAlignment="Center" Margin="5,0,5,0" Grid.Column="1" Grid.Row="0" Text="&#11166;" />
+
+        <Border x:Name="PanelReader" Grid.Column="2" Grid.Row="0" Background="#88000000">
+            <Grid>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Top" Padding="5,3,5,3" Margin="0,10,0,10" Foreground="White">Collect True Crown</Label>
+                <Image x:Name="IconReader" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Resources/true_crown_shadow.png" Width="64"></Image>
+                <Label x:Name="LabelReader" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="5,3,5,3" Margin="0,12,0,12" Foreground="White">Current Score: 0</Label>
+            </Grid>
+        </Border>
+
+        <TextBlock VerticalAlignment="Center" Margin="5,0,5,0" Grid.Column="3" Grid.Row="0" Text="&#11166;" />
+
+        <Border x:Name="PanelTimer" Grid.Column="4" Grid.Row="0" Background="#88000000">
+            <Grid>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Top" Padding="5,3,5,3" Margin="0,10,0,10" Foreground="White">Next teleport in:</Label>
+                <Label x:Name="LabelTimer" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="24">0.000</Label>
+                <Image x:Name="BegImage" HorizontalAlignment="Right" VerticalAlignment="Bottom" Source="Resources/beg_icon.png" Height="64" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,-13">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-15.803"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

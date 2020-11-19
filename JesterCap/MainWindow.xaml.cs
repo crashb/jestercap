@@ -113,11 +113,14 @@ namespace JesterCap
                 crownTimerStartFrame = 0;
             }
             int framesUntilTeleport = TELEPORT_FRAME_INTERVAL - (currentFrame - crownTimerStartFrame) % TELEPORT_FRAME_INTERVAL;
+            int numTeleportsThisLevel = (int)Math.Floor(currentFrame / (double)TELEPORT_FRAME_INTERVAL);
+            int nextTeleportFrame = (numTeleportsThisLevel + 1) * TELEPORT_FRAME_INTERVAL + crownTimerStartFrame;
             double secondsUntilTeleport = framesUntilTeleport / 60.000;
+            double nextTeleportSeconds = nextTeleportFrame / 60.000;
             if (secondsUntilTeleport < NOTIFICATION_SOUND_DELAY && !soundPlayed)
             {
-                PlayNotificationSound();
                 soundPlayed = true;
+                PlayNotificationSound();
             }
             if (framesUntilTeleport > lastFramesUntilTeleport)
             {
@@ -126,6 +129,7 @@ namespace JesterCap
             Dispatcher.Invoke(() =>
             {
                 LabelTimer.Content = string.Format("{0:0.000}", secondsUntilTeleport);
+                LabelNextTeleport.Content = string.Format("{0:0}:{1:00}", Math.Floor(nextTeleportSeconds / 60.0), nextTeleportSeconds % 60);
             });
             lastFramesUntilTeleport = framesUntilTeleport;
         }
@@ -201,9 +205,11 @@ namespace JesterCap
 
             PanelTimer.Background = CreateBrush(active ? COLOR_PANEL_BG_ACTIVE : COLOR_PANEL_BG_INACTIVE);
             LabelTimer.Foreground = CreateBrush(active ? COLOR_LABEL_TIMER_ACTIVE : COLOR_LABEL_TIMER_INACTIVE);
+            LabelNextTeleport.Foreground = CreateBrush(active ? COLOR_LABEL_TIMER_ACTIVE : COLOR_LABEL_TIMER_INACTIVE);
             if (!active)
             {
                 LabelTimer.Content = "0.000";
+                LabelNextTeleport.Content = "0:00";
             }
             BegImage.Opacity = active ? 1 : 0;
         }

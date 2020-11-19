@@ -5,7 +5,7 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 
 ## Usage
 ![JesterCap UI](/screencap.jpg "JesterCap UI")
-* Download the latest release and run the .exe file.
+* Download the [latest release](https://github.com/crashb/jestercap/releases/) and run the .exe file.
 * Ensure Spelunky 2 is running.
 * Click the "Attach" button in the bottom of the left-hand panel. This attaches JesterCap to the Spelunky 2 process.
   * Once JesterCap is attached, you can look at the bottom of the middle panel to confirm that it is displaying your current score and updating when you pick up more gold.
@@ -15,7 +15,7 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 * Automatically detects when the True Crown is collected, no need to manually sync at all
 * Doesn't count time while the game is paused, helping to prevent desyncs
 * Timer resets upon entering a new level
-* The `notification.wav` file can be replaced to an alert sound of your choosing
+* The `Resources/notification.wav` file can be replaced to an alert sound of your choosing
 
 ## Future Improvements
 * Ability to configure when the notification sound is played, or have multiple notification sounds

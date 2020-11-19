@@ -17,6 +17,10 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 * Timer resets upon entering a new level
 * The `Resources/notification.wav` file can be replaced to an alert sound of your choosing
 
+## Known Issues
+* Attaching to the Spelunky 2 process while on a True Crown run will cause the countdown timer to display incorrectly. This happens because there's no way for JesterCap to detect when the True Crown was picked up if JesterCap wasn't running at the time. To work around this problem, make sure JesterCap is running when the True Crown is picked up.
+  * This issue will resolve itself upon moving to the next level. 
+
 ## Future Improvements
 * Ability to configure when the notification sound is played, or have multiple notification sounds
 * Bugfixes. Testing the True Crown is hard (even using the `ABACAB00` seed).

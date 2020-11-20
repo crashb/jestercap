@@ -9,20 +9,21 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 * Ensure Spelunky 2 is running.
 * Click the "Attach" button in the bottom of the left-hand panel. This attaches JesterCap to the Spelunky 2 process.
   * Once JesterCap is attached, you can look at the bottom of the middle panel to confirm that it is displaying your current score and updating when you pick up more gold.
-* Collect the True Crown during a run. JesterCap will automatically save the time it was picked up and start the timer. 5 seconds before you teleport, you will hear a notification sound.
+* Collect the True Crown during a run. JesterCap will automatically save the time it was picked up and start the timer. You will start to hear notification sounds depending on the configurations specified in the included `App.config` file.
 
 ## Additional Features
-* Automatically detects when the True Crown is collected, no need to manually sync at all
+* Detects when the True Crown is collected, no need to manually sync at all
+* Detects when the True Crown is lost (i.e. player died) and resets automatically
 * Doesn't count time while the game is paused, helping to prevent desyncs
 * Timer resets upon entering a new level
 * The `Resources/notification.wav` file can be replaced to an alert sound of your choosing
+* The `App.config` file can be edited to change when & how many times the alert sound fires
 
 ## Known Issues
 * Attaching to the Spelunky 2 process while on a True Crown run will cause the countdown timer to display incorrectly. This happens because there's no way for JesterCap to detect when the True Crown was picked up if JesterCap wasn't running at the time. To work around this problem, make sure JesterCap is running when the True Crown is picked up.
   * This issue will resolve itself upon moving to the next level. 
 
 ## Future Improvements
-* Ability to configure when the notification sound is played, or have multiple notification sounds
 * Bugfixes. Testing the True Crown is hard (even using the `ABACAB00` seed).
 * Automatic attachment to the Spelunky 2 process instead of requiring a button press
 * UI polish. It's a bit rough around the edges currently.

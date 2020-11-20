@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Windows;
 using System.Diagnostics;
+using System.Configuration;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Timers;
 using System.Media;
+using System.Linq;
 
 namespace JesterCap
 {
@@ -22,7 +24,8 @@ namespace JesterCap
 
         private int crownTimerStartFrame;
         private int lastFramesUntilTeleport;
-        private bool soundPlayed = false;
+        private double[] warningTimes;
+        private bool[] alreadyWarned;
 
         private const string COLOR_PANEL_BG_INACTIVE = "#88000000";
         private const string COLOR_PANEL_BG_ACTIVE = "#BB000000";
@@ -36,11 +39,11 @@ namespace JesterCap
         private const int POLL_INTERVAL_MS = 16;  // needs to be >= 60 times a second
         private const int TRUE_CROWN_ID = 552;
         private const int TELEPORT_FRAME_INTERVAL = 22 * 60;
-        private const int NOTIFICATION_SOUND_DELAY = 5;
 
         public MainWindow()
         {
             InitializeComponent();
+            LoadWarningTimesFromConfig();
 
             timerPollForCrown = new Timer(POLL_INTERVAL_MS);
             timerPollForCrown.Stop();
@@ -53,6 +56,16 @@ namespace JesterCap
             SetActivePanelAttach(activePanelAttach);
             SetActivePanelReader(activePanelReader);
             SetActivePanelTimer(activePanelTimer);
+        }
+
+        private void LoadWarningTimesFromConfig()
+        {
+            warningTimes = ConfigurationManager.AppSettings["warningTimes"].Split(',').Select(s => double.Parse(s.Trim())).ToArray();
+            if (warningTimes.Length == 0)
+            {
+                warningTimes = new double[] { 5 };
+            }
+            alreadyWarned = Enumerable.Repeat(false, warningTimes.Length).ToArray();
         }
 
         private void PollForCrown(object sender, ElapsedEventArgs e)
@@ -113,18 +126,23 @@ namespace JesterCap
                 crownTimerStartFrame = 0;
             }
             int framesUntilTeleport = TELEPORT_FRAME_INTERVAL - (currentFrame - crownTimerStartFrame) % TELEPORT_FRAME_INTERVAL;
-            int numTeleportsThisLevel = (int)Math.Floor(currentFrame / (double)TELEPORT_FRAME_INTERVAL);
+            int numTeleportsThisLevel = (int)Math.Floor((currentFrame - crownTimerStartFrame) / (double)TELEPORT_FRAME_INTERVAL);
             int nextTeleportFrame = (numTeleportsThisLevel + 1) * TELEPORT_FRAME_INTERVAL + crownTimerStartFrame;
             double secondsUntilTeleport = framesUntilTeleport / 60.000;
             double nextTeleportSeconds = nextTeleportFrame / 60.000;
-            if (secondsUntilTeleport < NOTIFICATION_SOUND_DELAY && !soundPlayed)
+            for (int i = 0; i < warningTimes.Length; i++)
             {
-                soundPlayed = true;
-                PlayNotificationSound();
+                double warningTime = warningTimes[i];
+                if (secondsUntilTeleport <= warningTime && !alreadyWarned[i])
+                {
+                    alreadyWarned[i] = true;
+                    PlayNotificationSound();
+                }
             }
+            
             if (framesUntilTeleport > lastFramesUntilTeleport)
             {
-                soundPlayed = false;
+                alreadyWarned = Enumerable.Repeat(false, warningTimes.Length).ToArray();
             }
             Dispatcher.Invoke(() =>
             {

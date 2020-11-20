@@ -9,7 +9,7 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 * Ensure Spelunky 2 is running.
 * Click the "Attach" button in the bottom of the left-hand panel. This attaches JesterCap to the Spelunky 2 process.
   * Once JesterCap is attached, you can look at the bottom of the middle panel to confirm that it is displaying your current score and updating when you pick up more gold.
-* Collect the True Crown during a run. JesterCap will automatically save the time it was picked up and start the timer. You will start to hear notification sounds depending on the configurations specified in the included `App.config` file.
+* Collect the True Crown during a run. JesterCap will automatically save the time it was picked up and start the timer. You will start to hear notification sounds depending on the configurations specified in the included `JesterCap.exe.config` file.
 
 ## Additional Features
 * Detects when the True Crown is collected, no need to manually sync at all
@@ -17,7 +17,7 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 * Doesn't count time while the game is paused, helping to prevent desyncs
 * Timer resets upon entering a new level
 * The `Resources/notification.wav` file can be replaced to an alert sound of your choosing
-* The `App.config` file can be edited to change when & how many times the alert sound fires
+* The `JesterCap.exe.config` file can be edited to change when & how many times the alert sound fires
 
 ## Known Issues
 * Attaching to the Spelunky 2 process while on a True Crown run will cause the countdown timer to display incorrectly. This happens because there's no way for JesterCap to detect when the True Crown was picked up if JesterCap wasn't running at the time. To work around this problem, make sure JesterCap is running when the True Crown is picked up.

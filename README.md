@@ -5,6 +5,7 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 
 ## Usage
 ![JesterCap UI](/screencap.jpg "JesterCap UI")
+* Download and install the latest [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework/) (4.8+).
 * Download the [latest release](https://github.com/crashb/jestercap/releases/) and run the .exe file.
 * Ensure Spelunky 2 is running.
 * Click the "Attach" button in the bottom of the left-hand panel. This attaches JesterCap to the Spelunky 2 process.
@@ -14,7 +15,7 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 ## Additional Features
 * Detects when the True Crown is collected, no need to manually sync at all
 * Detects when the True Crown is lost (i.e. player died) and resets automatically
-* Doesn't count time while the game is paused, helping to prevent desyncs
+* Doesn't count time while the game is paused or during Ankh respawn animation, helping to prevent desyncs
 * Timer resets upon entering a new level
 * The `Resources/notification.wav` file can be replaced to an alert sound of your choosing
 * The `JesterCap.exe.config` file can be edited to change when & how many times the alert sound fires

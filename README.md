@@ -6,7 +6,7 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 ## Usage
 ![JesterCap UI](/screencap.jpg "JesterCap UI")
 * Download and install the latest [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework/) (4.8+).
-* Download the [latest release](https://github.com/crashb/jestercap/releases/) and run the .exe file.
+* Download the [latest release](https://github.com/crashb/jestercap/releases/), extract to a folder on your computer, and run the .exe file.
 * Ensure Spelunky 2 is running.
 * Click the "Attach" button in the bottom of the left-hand panel. This attaches JesterCap to the Spelunky 2 process.
   * Once JesterCap is attached, you can look at the bottom of the middle panel to confirm that it is displaying your current score and updating when you pick up more gold.

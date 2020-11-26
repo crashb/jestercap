@@ -4,6 +4,7 @@ using System.Linq;
 using System.Timers;
 using System.Configuration;
 using System.Media;
+using System.Globalization;
 
 namespace JesterCap
 {
@@ -55,7 +56,10 @@ namespace JesterCap
                 string warningTimesSetting = ConfigurationManager.AppSettings["warningTimes"];
                 if (warningTimesSetting != null)
                 {
-                    warningTimes = warningTimesSetting.Split(',').Select(s => double.Parse(s.Trim())).ToArray();
+                    warningTimes = warningTimesSetting.Split(',').Select(s => {
+                        string trimmedSetting = s.Trim();
+                        return double.Parse(trimmedSetting, CultureInfo.InvariantCulture);
+                    }).ToArray();
                 }
             }
             catch (ConfigurationErrorsException)

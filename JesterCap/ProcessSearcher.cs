@@ -4,14 +4,12 @@
  */
 
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace JesterCap
 {
     public static class ProcessSearcher
     {
         public const string SPELUNKY_PROCESS_NAME = "Spel2";
-        private const int SEARCH_INTERVAL_MS = 100;
 
         public static Process SearchForSpelunkyProcess()
         {

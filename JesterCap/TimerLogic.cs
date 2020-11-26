@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Linq;
 using System.Timers;
 using System.Configuration;
@@ -26,8 +27,6 @@ namespace JesterCap
         {
             this.mainWindow = mainWindow;
 
-            LoadWarningTimesFromConfig();
-
             pollForCrown = new Timer(POLL_INTERVAL_MS);
             pollForCrown.Stop();
             pollForCrown.Elapsed += PollForCrown;
@@ -39,6 +38,7 @@ namespace JesterCap
 
         public void Start()
         {
+            LoadWarningTimesFromConfig();
             pollForCrown.Start();
         }
 
@@ -50,10 +50,15 @@ namespace JesterCap
 
         private void LoadWarningTimesFromConfig()
         {
-            warningTimes = ConfigurationManager.AppSettings["warningTimes"].Split(',').Select(s => double.Parse(s.Trim())).ToArray();
-            if (warningTimes.Length == 0)
+            string warningTimesSetting = ConfigurationManager.AppSettings["warningTimes"];
+            if (warningTimesSetting != null)
             {
-                warningTimes = new double[] { 5 };
+                warningTimes = warningTimesSetting.Split(',').Select(s => double.Parse(s.Trim())).ToArray();
+            }
+            if (warningTimes == null || warningTimes.Length == 0)
+            {
+                MessageBox.Show("JesterCap.exe.config could not be loaded. Using default settings (timer at 5s, 2.5s, and 1s intervals).", "Configuration Not Found", MessageBoxButton.OK, MessageBoxImage.Warning);
+                warningTimes = new double[] { 5, 2.5, 1 };
             }
             alreadyWarned = Enumerable.Repeat(false, warningTimes.Length).ToArray();
         }

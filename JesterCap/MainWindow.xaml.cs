@@ -41,7 +41,7 @@ namespace JesterCap
             Process spelunkyProcess = ProcessSearcher.SearchForSpelunkyProcess();
             if (spelunkyProcess == null)
             {
-                MessageBox.Show(string.Format("Process \"{0}\" not found. Please try again.", ProcessSearcher.SPELUNKY_PROCESS_NAME), "Process Not Found");
+                MessageBox.Show(string.Format("Process \"{0}\" not found. Please try again.", ProcessSearcher.SPELUNKY_PROCESS_NAME), "Process Not Found", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

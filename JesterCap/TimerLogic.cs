@@ -50,11 +50,19 @@ namespace JesterCap
 
         private void LoadWarningTimesFromConfig()
         {
-            string warningTimesSetting = ConfigurationManager.AppSettings["warningTimes"];
-            if (warningTimesSetting != null)
+            try
             {
-                warningTimes = warningTimesSetting.Split(',').Select(s => double.Parse(s.Trim())).ToArray();
+                string warningTimesSetting = ConfigurationManager.AppSettings["warningTimes"];
+                if (warningTimesSetting != null)
+                {
+                    warningTimes = warningTimesSetting.Split(',').Select(s => double.Parse(s.Trim())).ToArray();
+                }
             }
+            catch (ConfigurationErrorsException)
+            {
+                // if an exception was thrown, we can continue on with the default settings
+            }
+
             if (warningTimes == null || warningTimes.Length == 0)
             {
                 MessageBox.Show("JesterCap.exe.config could not be loaded. Using default settings (timer at 5s, 2.5s, and 1s intervals).", "Configuration Not Found", MessageBoxButton.OK, MessageBoxImage.Warning);

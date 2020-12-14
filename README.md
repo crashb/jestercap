@@ -22,11 +22,12 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 
 ## Known Issues
 * Attaching to the Spelunky 2 process while on a True Crown run will cause the countdown timer to display incorrectly. This happens because there's no way for JesterCap to detect when the True Crown was picked up if JesterCap wasn't running at the time. To work around this problem, make sure JesterCap is running when the True Crown is picked up.
-  * This issue will resolve itself upon moving to the next level. 
+  * This issue will resolve itself upon moving to the next level.
+* Local multiplayer / online is unsupported at this time.
 
 ## Future Improvements
-* Bugfixes. Testing the True Crown is hard (even using the `ABACAB00` seed).
+* Bugfixes. Testing the True Crown is hard (even using seeded runs).
 * Automatic attachment to the Spelunky 2 process instead of requiring a button press
 * UI polish. It's a bit rough around the edges currently.
 * Code cleanup / refactoring
-* Because Spelunky 2 is so difficult, I would love to turn this program into a trainer / assist mode for the game. However, that will require a lot of low-level assembly debugging.
+* Local multiplayer / online support

@@ -11,7 +11,7 @@ namespace JesterCap
     public class TimerLogic
     {
         private const int POLL_INTERVAL_MS = 16;  // needs to be >= 60 times a second
-        private const int TRUE_CROWN_ID = 552;
+        private const int TRUE_CROWN_ID = 557;
         private const int TELEPORT_FRAME_INTERVAL = 22 * 60;
 
         private Timer pollForCrown;

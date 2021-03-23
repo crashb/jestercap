@@ -3,6 +3,9 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 
 ![The True Crown](/JesterCap/Resources/true_crown_icon.png "The True Crown from Spelunky 2")
 
+## Prominent Runs
+* Shortly after being released, this timer was used by [TwiggleSoft](https://www.twitch.tv/twigglesoft) to set the (former) [score world record of $5,555,257](https://www.youtube.com/watch?v=MiJ2ApdaDD4).
+
 ## Usage
 ![JesterCap UI](/screencap.jpg "JesterCap UI")
 * Download and install the latest [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework/) (4.8+).

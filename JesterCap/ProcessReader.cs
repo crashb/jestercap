@@ -12,9 +12,9 @@ namespace JesterCap
         private const int PROCESS_WM_READ = 0x0010;
 
         // These offsets need to be updated with each new version of Spelunky 2.
-        // Current as of 1.20.3a (2021-02-26)
-        private const int OFFSET_GAME_DATA = 0x222E9448;
-        private const int OFFSET_SCORE = 0x222E44B0;
+        // Current as of 1.20.4a (2021-03-23)
+        private const int OFFSET_GAME_DATA = 0x2231C4C8;
+        private const int OFFSET_SCORE = 0x22317500;
         private const int OFFSET_FRAME_COUNT = 0xEA4;      // the number of frames spent in the current level (unpaused)
         private const int OFFSET_NUM_ITEMS = 0X77E;        // the number of items picked up
         private const int OFFSET_FIRST_ITEM_ID = 0x784;    // the first item ID in memory

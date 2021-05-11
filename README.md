@@ -1,14 +1,14 @@
 # JesterCap
 JesterCap is a helper application that runs alongside [Spelunky 2](https://store.steampowered.com/app/418530/Spelunky_2/), a game developed by [Mossmouth](http://mossmouth.com/) and [Blitworks](https://www.blitworks.com/). There's an item in Spelunky 2 called the [True Crown](https://spelunky.fandom.com/wiki/The_True_Crown) that causes the player to teleport every 22 seconds. Bringing the True Crown to the game's true ending is an additional challenge for high-level players. JesterCap helps players manage their teleports by hooking into the Spelunky 2 process and playing an audio cue when the teleport is about to happen.
 
-![The True Crown](/JesterCap/Resources/true_crown_icon.png "The True Crown from Spelunky 2")
+![The True Crown](JesterCap/Resources/true_crown_icon.png "The True Crown from Spelunky 2")
 
 ## Prominent Runs
 * Shortly after being released, this timer was used by [TwiggleSoft](https://www.twitch.tv/twigglesoft) to set the (former) [score world record of $5,555,257](https://www.youtube.com/watch?v=MiJ2ApdaDD4).
 * Shortly after the aforementioned score world record, a fork of this timer was used by [saki_rinshan](https://www.twitch.tv/saki_rinshan) to set the (former) [score world record of $5,754,825](https://www.youtube.com/watch?v=Dr0d703jDaQ).
 
 ## Usage
-![JesterCap UI](/screencap.jpg "JesterCap UI")
+![JesterCap UI](docs/screencap.jpg "JesterCap UI")
 * Download and install the latest [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework/) (4.8+).
 * Download the [latest release](https://github.com/crashb/jestercap/releases/), extract to a folder on your computer, and run the .exe file.
 * Ensure Spelunky 2 is running.

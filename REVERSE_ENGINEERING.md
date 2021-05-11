@@ -20,7 +20,7 @@ A "memory offset" refers to a particular location in memory. We are going to use
 We'll start by searching for an offset we can use to read the current score from Spelunky 2. To accomplish this, we're going to repeatedly change the value of our score (by picking up treasure in-game) and looking for memory values that consistently match our changing score value.
 
 * Start up Spelunky 2 and begin a run.
-    * I recommend using the seed `00000008`. This seed contains an easy True Crown at 2-1.
+    * I recommend using the seed `00000008`. This seed contains a guaranteed True Crown on 2-2 (assuming you complete Beg's quest on the previous levels).
 * Ensure CE is set to use "page exceptions" (see "Setup" section).
 * Attach CE to the Spelunky 2 process.
 * Pick up some treasure in Spelunky 2 so that your score is not 0.

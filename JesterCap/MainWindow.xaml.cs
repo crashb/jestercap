@@ -30,29 +30,43 @@ namespace JesterCap
         {
             InitializeComponent();
             timer = new TimerLogic(this);
+            ProcessSearcher.StartSearchingForSpelunkyProcess(OnSpelunkyProcessFound);
 
             SetActivePanelAttach(activePanelAttach);
             SetActivePanelReader(activePanelReader);
             SetActivePanelTimer(activePanelTimer);
         }
 
-        private void ButtonAttach_Click(object sender, RoutedEventArgs e)
+        private void OnSpelunkyProcessFound(Process spelunkyProcess)
         {
-            Process spelunkyProcess = ProcessSearcher.SearchForSpelunkyProcess();
-            if (spelunkyProcess == null)
-            {
-                MessageBox.Show(string.Format("Process \"{0}\" not found. Please try again.", ProcessSearcher.SPELUNKY_PROCESS_NAME), "Process Not Found", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
             ProcessReader.LoadProcess(spelunkyProcess);
             spelunkyProcess.EnableRaisingEvents = true;
             spelunkyProcess.Exited += SpelunkyProcess_Exited;
 
-            SetActivePanelAttach(false);
-            SetActivePanelReader(true);
+            Dispatcher.Invoke(() => {
+                SetActivePanelAttach(false);
+                SetActivePanelReader(true);
+            });
             timer.Start();
         }
+
+        //private void ButtonAttach_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Process spelunkyProcess = ProcessSearcher.GetSpelunkyProcess();
+        //    if (spelunkyProcess == null)
+        //    {
+        //        MessageBox.Show(string.Format("Process \"{0}\" not found. Please try again.", ProcessSearcher.SPELUNKY_PROCESS_NAME), "Process Not Found", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //        return;
+        //    }
+
+        //    ProcessReader.LoadProcess(spelunkyProcess);
+        //    spelunkyProcess.EnableRaisingEvents = true;
+        //    spelunkyProcess.Exited += SpelunkyProcess_Exited;
+
+        //    SetActivePanelAttach(false);
+        //    SetActivePanelReader(true);
+        //    timer.Start();
+        //}
 
         private void SpelunkyProcess_Exited(object sender, EventArgs e)
         {
@@ -81,8 +95,8 @@ namespace JesterCap
 
             PanelAttach.Background = CreateBrush(active ? COLOR_PANEL_BG_ACTIVE : COLOR_PANEL_BG_INACTIVE);
             IconAttach.Source = CreateImageSource(active ? ICON_ATTACH_ACTIVE : ICON_ATTACH_INACTIVE);
-            ButtonAttach.IsEnabled = active;
-            ButtonAttach.Content = active ? "Attach" : "Attached";
+            //ButtonAttach.IsEnabled = active;
+            //ButtonAttach.Content = active ? "Attach" : "Attached";
         }
 
         public void SetActivePanelReader(bool active)

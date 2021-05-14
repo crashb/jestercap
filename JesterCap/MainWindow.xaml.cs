@@ -30,6 +30,7 @@ namespace JesterCap
         {
             InitializeComponent();
             timer = new TimerLogic(this);
+            ProcessSearcher.StartSearchingForSpelunkyProcess(OnSpelunkyProcessFound, null);
 
             SetActivePanelAttach(activePanelAttach);
             SetActivePanelReader(activePanelReader);
@@ -51,11 +52,15 @@ namespace JesterCap
 
         private void SpelunkyProcess_Exited(object sender, EventArgs e)
         {
+            // start searching again but do not hook into the exiting process
+            ProcessSearcher.StartSearchingForSpelunkyProcess(OnSpelunkyProcessFound, (Process)sender);
+
             timer.Stop();
+
             Dispatcher.Invoke(() => {
+                SetActivePanelAttach(true);
                 SetActivePanelReader(false);
                 SetActivePanelTimer(false);
-                SetActivePanelAttach(true);  // updating PanelAttach last avoids a race condition
             });
         }
 
@@ -77,11 +82,6 @@ namespace JesterCap
 
             PanelAttach.Background = CreateBrush(active ? COLOR_PANEL_BG_ACTIVE : COLOR_PANEL_BG_INACTIVE);
             IconAttach.Source = CreateImageSource(active ? ICON_ATTACH_ACTIVE : ICON_ATTACH_INACTIVE);
-
-            if (active)
-            {
-                ProcessSearcher.StartSearchingForSpelunkyProcess(OnSpelunkyProcessFound);
-            }
         }
 
         public void SetActivePanelReader(bool active)

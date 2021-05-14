@@ -15,10 +15,17 @@ namespace JesterCap
         public const string SPELUNKY_PROCESS_NAME = "Spel2";
         private const int PROCESS_SEARCH_INTERVAL_MS = 500;
 
-        public static void StartSearchingForSpelunkyProcess(Action<Process> processFound)
+        private static bool IsSpelunkyProcessValid(Process spelunkyProcess, Process lastProcess)
+        {
+            if (spelunkyProcess == null) return false;
+            if (lastProcess != null && spelunkyProcess.Id == lastProcess.Id) return false;
+            return true;
+        }
+
+        public static void StartSearchingForSpelunkyProcess(Action<Process> processFound, Process lastProcess)
         {
             Process spelunkyProcess = GetSpelunkyProcess();
-            if (spelunkyProcess != null)
+            if (IsSpelunkyProcessValid(spelunkyProcess, lastProcess))
             {
                 processFound(spelunkyProcess);
                 return;
@@ -33,7 +40,7 @@ namespace JesterCap
                     if (processName == SPELUNKY_PROCESS_NAME + ".exe")
                     {
                         spelunkyProcess = GetSpelunkyProcess();
-                        if (spelunkyProcess != null) // Should always be true
+                        if (IsSpelunkyProcessValid(spelunkyProcess, lastProcess)) // Should always be true
                         {
                             processCreationWatcher.Stop();
                             processFound(spelunkyProcess);
@@ -48,7 +55,7 @@ namespace JesterCap
                 processSearchTimer.Elapsed += (sender, e) =>
                 {
                     spelunkyProcess = GetSpelunkyProcess();
-                    if (spelunkyProcess != null)
+                    if (IsSpelunkyProcessValid(spelunkyProcess, lastProcess))
                     {
                         processSearchTimer.Stop();
                         processFound(spelunkyProcess);

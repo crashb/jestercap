@@ -22,7 +22,6 @@
             <Grid>
                 <Label HorizontalAlignment="Center" VerticalAlignment="Top" Padding="5,3,5,3" Margin="0,10,0,10" Foreground="White">Start Spelunky 2</Label>
                 <Image x:Name="IconAttach" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Resources/spelunky_2_shadow.png" Width="64"></Image>
-                <!--<Button x:Name="ButtonAttach" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="5,3,5,3" Margin="0,10,0,10" Click="ButtonAttach_Click">Attach</Button>-->
             </Grid>
         </Border>
 

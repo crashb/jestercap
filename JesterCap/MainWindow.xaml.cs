@@ -30,7 +30,6 @@ namespace JesterCap
         {
             InitializeComponent();
             timer = new TimerLogic(this);
-            ProcessSearcher.StartSearchingForSpelunkyProcess(OnSpelunkyProcessFound);
 
             SetActivePanelAttach(activePanelAttach);
             SetActivePanelReader(activePanelReader);
@@ -50,31 +49,13 @@ namespace JesterCap
             timer.Start();
         }
 
-        //private void ButtonAttach_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Process spelunkyProcess = ProcessSearcher.GetSpelunkyProcess();
-        //    if (spelunkyProcess == null)
-        //    {
-        //        MessageBox.Show(string.Format("Process \"{0}\" not found. Please try again.", ProcessSearcher.SPELUNKY_PROCESS_NAME), "Process Not Found", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //        return;
-        //    }
-
-        //    ProcessReader.LoadProcess(spelunkyProcess);
-        //    spelunkyProcess.EnableRaisingEvents = true;
-        //    spelunkyProcess.Exited += SpelunkyProcess_Exited;
-
-        //    SetActivePanelAttach(false);
-        //    SetActivePanelReader(true);
-        //    timer.Start();
-        //}
-
         private void SpelunkyProcess_Exited(object sender, EventArgs e)
         {
             timer.Stop();
             Dispatcher.Invoke(() => {
-                SetActivePanelAttach(true);
                 SetActivePanelReader(false);
                 SetActivePanelTimer(false);
+                SetActivePanelAttach(true);  // updating PanelAttach last avoids a race condition
             });
         }
 
@@ -84,7 +65,8 @@ namespace JesterCap
             return (Brush)converter.ConvertFromString(colorCode);
         }
 
-        private BitmapImage CreateImageSource(string path) {
+        private BitmapImage CreateImageSource(string path)
+        {
             Uri uriSource = new Uri(string.Format("/JesterCap;component/{0}", path), UriKind.Relative);
             return new BitmapImage(uriSource);
         }
@@ -95,8 +77,11 @@ namespace JesterCap
 
             PanelAttach.Background = CreateBrush(active ? COLOR_PANEL_BG_ACTIVE : COLOR_PANEL_BG_INACTIVE);
             IconAttach.Source = CreateImageSource(active ? ICON_ATTACH_ACTIVE : ICON_ATTACH_INACTIVE);
-            //ButtonAttach.IsEnabled = active;
-            //ButtonAttach.Content = active ? "Attach" : "Attached";
+
+            if (active)
+            {
+                ProcessSearcher.StartSearchingForSpelunkyProcess(OnSpelunkyProcessFound);
+            }
         }
 
         public void SetActivePanelReader(bool active)

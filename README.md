@@ -5,6 +5,7 @@ JesterCap is a helper application that runs alongside [Spelunky 2](https://store
 
 ## Prominent Runs
 * Shortly after being released, this timer was used by [TwiggleSoft](https://www.twitch.tv/twigglesoft) to set the (former) [score world record of $5,555,257](https://www.youtube.com/watch?v=MiJ2ApdaDD4).
+* Shortly after the aforementioned score world record, a fork of this timer was used by [saki_rinshan](https://www.twitch.tv/saki_rinshan) to set the (former) [score world record of $5,754,825](https://www.youtube.com/watch?v=Dr0d703jDaQ).
 
 ## Usage
 ![JesterCap UI](/screencap.jpg "JesterCap UI")

@@ -61,9 +61,9 @@ It turns out that when the opcode instruction is run, Register 10 (R10) contains
 
 * Select the opcode instruction that writes to the score offset
 * Click "More information" to open a window showing the state of every register when that instruction was executed
-* Make a note of the value in the R9 register; it should end with `4A0`
+* Make a note of the value in the R10 register; it should end with `4A0`
 * Click "Memory View," then go "Tools" > "Pointer Scan"
-* Enter the value that was in the R9 register
+* Enter the value that was in the R10 register
     * Also, lower the "Max level" to 3 or 4 to filter out extremely long pointer paths. We're expecting a small pointer path (only 1 level).
         ![Pointer scan settings](docs/re_pointer_scan.jpg "Pointer scan settings")
 * Click OK, then select somewhere to save the pointermap file.

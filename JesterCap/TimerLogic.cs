@@ -84,7 +84,7 @@ namespace JesterCap
             }
             int currentScore = ProcessReader.GetScore();
             mainWindow.Dispatcher.Invoke(() => {
-                mainWindow.LabelReader.Content = string.Format("Score Previous Level: {0}", currentScore);
+                mainWindow.LabelReader.Content = string.Format("Score: {0}", currentScore);
             });
 
             IntPtr gamePointer = ProcessReader.GetGamePointer();

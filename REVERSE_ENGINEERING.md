@@ -20,7 +20,7 @@ A "memory offset" refers to a particular location in memory. We are going to use
 We'll start by searching for an offset we can use to read the current score from Spelunky 2. To accomplish this, we're going to repeatedly change the value of our score (by picking up treasure in-game) and looking for memory values that consistently match our changing score value.
 
 * Start up Spelunky 2 and begin a run.
-    * I recommend using the seed `00000008`. This seed contains a guaranteed True Crown on 2-2 (assuming you complete Beg's quest on the previous levels).
+    * I recommend using the seed `00000008`. This seed contains a guaranteed True Crown on Jungle 2-3 (assuming you complete Beg's quest on the previous levels).
 * Ensure CE is set to use "page exceptions" (see "Setup" section).
 * Attach CE to the Spelunky 2 process.
 * Pick up some treasure in Spelunky 2 so that your score is not 0.
@@ -57,7 +57,7 @@ Click "Stop" on the new window to detach the debugger from Spelunky 2, select th
 
 When I was initially putting JesterCap together I spent a lot of time in the disassembler figuring out how this score value gets calculated. To make a long story short, the game tracks each player seperately, including how much gold each player has picked up and spent. Every time gold gets picked up, this calculation is performed again.
 
-It turns out that when the opcode instruction is run, Register 9 (R9) contains an pointer to some of player 1's data. This pointer is not the same as an offset; the value of the pointer can change every time the program is run. However, there is a fixed offset somewhere that contains the value of this pointer. We need to use CE's [**Pointer Scan**](https://cheatengine.org/help/pointer-scan.htm) functionality to find it.
+It turns out that when the opcode instruction is run, Register 10 (R10) contains an pointer to some of player 1's data. This pointer is not the same as an offset; the value of the pointer can change every time the program is run. However, there is a fixed offset somewhere that contains the value of this pointer. We need to use CE's [**Pointer Scan**](https://cheatengine.org/help/pointer-scan.htm) functionality to find it.
 
 * Select the opcode instruction that writes to the score offset
 * Click "More information" to open a window showing the state of every register when that instruction was executed
